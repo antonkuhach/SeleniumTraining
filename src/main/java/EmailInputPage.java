@@ -22,4 +22,9 @@ public class EmailInputPage {
         driver.findElement(NEXT_BUTTON_LOCATOR).click();
         return new PasswordInputPage(driver);
     }
+
+    public EmailInputPage open() {
+        driver.get("https://gmail.com");
+        return this;
+    }
 }

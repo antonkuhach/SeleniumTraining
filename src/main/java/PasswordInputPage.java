@@ -18,8 +18,8 @@ public class PasswordInputPage {
         return this;
     }
 
-    public EmailInboxPage comfirmPassword() {
+    public GmailLoadingPage comfirmPassword() {
         driver.findElement(NEXT_BUTTON_LOCATOR).click();
-        return new EmailInboxPage(driver);
+        return new GmailLoadingPage(driver);
     }
 }
