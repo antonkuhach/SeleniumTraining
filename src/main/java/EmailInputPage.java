@@ -13,11 +13,13 @@ public class EmailInputPage {
         this.driver = driver;
     }
 
-    public void fillEmailInput(String query) {
+    public EmailInputPage fillEmailInput(String query) {
         driver.findElement(EMAIL_INPUT_LOCATOR).sendKeys(query);
+        return this;
     }
 
-    public void confirmEmail() {
+    public PasswordInputPage confirmEmail() {
         driver.findElement(NEXT_BUTTON_LOCATOR).click();
+        return new PasswordInputPage(driver);
     }
 }

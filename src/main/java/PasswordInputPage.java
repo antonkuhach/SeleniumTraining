@@ -13,5 +13,13 @@ public class PasswordInputPage {
         this.driver = driver;
     }
 
+    public PasswordInputPage fillPasswordInput(String query) {
+        driver.findElement(PASSWORD_INPUT_LOCATOR).sendKeys(query);
+        return this;
+    }
 
+    public EmailInboxPage comfirmPassword() {
+        driver.findElement(NEXT_BUTTON_LOCATOR).click();
+        return new EmailInboxPage(driver);
+    }
 }
