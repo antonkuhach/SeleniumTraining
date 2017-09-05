@@ -24,10 +24,15 @@ public class GmailTest {
     }
 
     @Test
-    public void sendLetterUsingGmailTest() {
+    public void gmailLoginTest() {
         EmailInboxPage emailInboxPage = new EmailInputPage(driver).open().fillEmailInput("sumkin11fedor@gmail.com").confirmEmail().fillPasswordInput("0Jp2t75T").comfirmPassword().verifyLoading();
         String expectedText = "Несортированные";
         assertEquals(expectedText, emailInboxPage.getCathegoryName());
+    }
+
+    @Test
+    public void createLetterTest() {
+
     }
 
     @AfterClass(description = "Close browser")
