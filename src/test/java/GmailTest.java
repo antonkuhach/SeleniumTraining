@@ -14,9 +14,18 @@ import static org.testng.Assert.assertTrue;
  */
 public class GmailTest {
     private WebDriver driver;
+    private EmailBoxPage emailBoxPage;
+    private String RECIPIENT;
+    private String LETTER_TOPIC;
+    private String LETTER_BODY;
+
+
 
     @BeforeClass(description = "Start browser")
     public void setup() {
+        RECIPIENT = "anton_kuhach@epam.com";
+        LETTER_TOPIC = "Testing with Selenium";
+        LETTER_BODY = "Test body.";
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
@@ -26,7 +35,6 @@ public class GmailTest {
 
     @Test(priority = 0)
     public void gmailLoginTest() {
-        EmailBoxPage emailBoxPage;
         String EMAIL_LOGIN = "sumkin11fedor@gmail.com";
         String PASSWORD = "0Jp2t75T";
         String EXPECTED_TEXT = "Входящие";
@@ -37,16 +45,15 @@ public class GmailTest {
 
     @Test(priority = 1)
     public void createLetterTest() {
-        String RECIPIENT = "anton_kuhach@epam.com";
-        String LETTER_TOPIC = "Testing with Selenium";
-        String LETTER_BODY = "Test body.";
-
-        new EmailBoxPage(driver).createNewEmail().writeRecipientAddress(RECIPIENT).writeLetterTopic(LETTER_TOPIC).writeLetterBody(LETTER_BODY).saveEmailAsADraft().goToDraftFolder();
+        emailBoxPage.createNewEmail().writeRecipientAddress(RECIPIENT).writeLetterTopic(LETTER_TOPIC).writeLetterBody(LETTER_BODY).saveEmailAsADraft().goToDraftFolder();
         assertTrue(driver.findElements(By.xpath("//span[text() = 'Testing with Selenium']")).size() > 0);
     }
 
-    //@Test(priority = 2)
-    //public void
+    @Test(priority = 2)
+    public void draftEmailContentTest() {
+        emailBoxPage.openDraftLetter();
+        assertTrue(driver.findElements(By.xpath("//span[@email='anton_kuhach@epam.com']")).size() > 0);
+    }
 
     @AfterClass(description = "Close browser")
     public void teardown() {
