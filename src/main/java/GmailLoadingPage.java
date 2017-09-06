@@ -12,7 +12,7 @@ public class GmailLoadingPage {
         this.driver = driver;
     }
 
-    public EmailInboxPage verifyLoading() {
-        return driver.findElement(LOADING_PAGE_LOCATOR).isEnabled() ? new EmailInboxPage(driver) : null;
+    public EmailBoxPage verifyLoading() {
+        return driver.findElement(LOADING_PAGE_LOCATOR).isEnabled() ? new EmailBoxPage(driver) : null;
     }
 }
