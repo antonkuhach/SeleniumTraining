@@ -55,6 +55,12 @@ public class GmailTest {
         assertTrue(driver.findElements(By.xpath("//span[@email='anton_kuhach@epam.com']")).size() > 0);
     }
 
+    @Test(priority = 3)
+    public void draftRemoveTest() {
+        emailBoxPage.sendDraftLetter();
+        assertTrue(driver.findElements(By.xpath("//span[text() = 'Testing with Selenium']")).size() == 0);
+    }
+
     @AfterClass(description = "Close browser")
     public void teardown() {
         driver.close();

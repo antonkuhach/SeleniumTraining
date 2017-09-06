@@ -16,6 +16,7 @@ public class EmailBoxPage {
     private static final By CLOSE_AND_SAVE_EMAIL_LOCATOR = By.xpath("//img[@aria-label=\"Сохранить и закрыть\"]");
     private static final By DRAFT_FOLDER_LOCATOR = By.xpath("//a[@href=\"https://mail.google.com/mail/#drafts\"]");
     private static final By DRAFT_LETTER_LOCATOR = By.xpath("//span[text() = 'Testing with Selenium']");
+    private static final By SEND_BUTTON_LOCATOR = By.xpath("//div[text() = 'Отправить']");
 
 
     public EmailBoxPage(WebDriver driver) {
@@ -60,6 +61,16 @@ public class EmailBoxPage {
 
     public EmailBoxPage openDraftLetter() {
         driver.findElement(DRAFT_LETTER_LOCATOR).click();
+        return this;
+    }
+
+    public EmailBoxPage sendDraftLetter() {
+        driver.findElement(SEND_BUTTON_LOCATOR).click();
+        return this;
+    }
+
+    public EmailBoxPage refreshMailbox() {
+        //driver.findElement()
         return this;
     }
 }
