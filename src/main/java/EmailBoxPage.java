@@ -14,7 +14,7 @@ public class EmailBoxPage {
     private static final By EMAIL_TOPIC_LOCATOR = By.xpath("//input[@name=\"subjectbox\"]");
     private static final By EMAIL_BODY_LOCATOR = By.xpath("//div[@aria-label=\"Тело письма\"]");
     private static final By CLOSE_AND_SAVE_EMAIL_LOCATOR = By.xpath("//img[@aria-label=\"Сохранить и закрыть\"]");
-    private static final By DRAFT_FOLDER_LOCATOR = By.xpath("//a[@href=\"https://mail.google.com/mail/#drafts\"]");
+    private static final By DRAFT_FOLDER_LOCATOR = By.xpath("//a[contains(@href, '#drafts')]");
     private static final By DRAFT_LETTER_LOCATOR = By.xpath("//span[text() = 'Testing with Selenium']");
     private static final By SEND_BUTTON_LOCATOR = By.xpath("//div[text() = 'Отправить']");
 
@@ -66,6 +66,7 @@ public class EmailBoxPage {
 
     public EmailBoxPage sendDraftLetter() {
         driver.findElement(SEND_BUTTON_LOCATOR).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[text() = 'Testing with Selenium']"))));
         return this;
     }
 

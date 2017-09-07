@@ -1,11 +1,14 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Anton_Kuhach on 9/5/2017.
  */
 public class EmailInputPage {
     WebDriver driver;
+    WebDriverWait wait;
     private static final By EMAIL_INPUT_LOCATOR = By.cssSelector("#identifierId");
     private static final By NEXT_BUTTON_LOCATOR = By.xpath("//*[@id=\"identifierNext\"]/content/span");
 
